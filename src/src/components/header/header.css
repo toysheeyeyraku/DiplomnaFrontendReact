@@ -1,0 +1,17 @@
+.headerLogo{
+    max-width: 80px;
+}
+.headerUp{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.header { 
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
