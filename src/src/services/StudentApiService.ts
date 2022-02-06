@@ -21,8 +21,8 @@ class StudentApiService {
     public async getStudentProfile() {
 
         const headers = await this.getHeaders();
-
-        return axios.get('https://localhost:5002/student/profile', { headers });
+        const result = await axios.get('https://localhost:5002/student/profileImage', { headers });
+        return result;
     }
 }
 

@@ -3,6 +3,8 @@ import './studentProfile.css'
 import axios from 'axios';
 import authService from '../../services/AuthService';
 import studentApiService from '../../services/StudentApiService';
+import apiRequestService from '../../services/ApiRequestService';
+import { AxiousRequestMethod } from '../../types/axiosRequestMethod.type';
 
 export default class StudentProfileComponent extends React.Component<any> {
     state = {
@@ -10,8 +12,11 @@ export default class StudentProfileComponent extends React.Component<any> {
         secondName: '',
         thirdName: '',
         phone: '',
-        email: ''
+        email: '',
+        profileImage: '',
     }
+
+
     constructor(props: any) {
         super(props)
         this.state = {
@@ -19,14 +24,19 @@ export default class StudentProfileComponent extends React.Component<any> {
             secondName: '',
             thirdName: '',
             phone: '',
-            email: ''
+            email: '',
+            profileImage: '',
         }
-        studentApiService.getStudentProfile();
+
+        studentApiService.getStudentProfile().then((result) => {
+            this.setState({ profileImage: `data:image/png;base64,${result.data}` });
+        });
         this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
         this.handleChangeSecondName = this.handleChangeSecondName.bind(this);
         this.handleChangeThirdName = this.handleChangeThirdName.bind(this);
         this.handleChangePhone = this.handleChangePhone.bind(this);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
+        this.handleChangeProfileImage = this.handleChangeProfileImage.bind(this);
     }
 
 
@@ -48,6 +58,14 @@ export default class StudentProfileComponent extends React.Component<any> {
 
     handleChangeEmail(event: any) {
         this.setState({ email: event.target.value });
+    }
+
+    async handleChangeProfileImage(event: any) {
+        await this.setState({ profileImage: event.target.files[0] })
+        const formData = new FormData();
+        console.log('yes')
+        formData.append('image', this.state.profileImage, 'file');
+        await apiRequestService.makeRequest(AxiousRequestMethod.post, 'https://localhost:5002/student/profile/update', formData);
     }
 
     async getProfile() {
@@ -90,12 +108,14 @@ export default class StudentProfileComponent extends React.Component<any> {
                         </div>
                     </div>
                     <div className='rightBlock'>
-
+                        <input type='file' onChange={this.handleChangeProfileImage} />
                     </div>
                 </div>
                 <div className='saveSection'>
                     <button onClick={() => this.saveProfile()}>Зберегти</button>
                 </div>
+
+                <img src={this.state.profileImage} />
             </div>
         )
     }

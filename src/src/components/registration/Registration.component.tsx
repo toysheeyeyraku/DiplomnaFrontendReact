@@ -55,8 +55,8 @@ export default class RegistrationComponent extends React.Component<any> {
       }
 
 
-      //let result = await axios.post('https://localhost:5000/registration', registrationObject, { headers });
-      //console.log(result);
+      let result = await axios.post('https://localhost:5000/registration', registrationObject, { headers });
+      console.log(result);
     }
     catch (error) {
       console.log(error);
