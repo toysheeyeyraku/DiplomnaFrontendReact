@@ -31,3 +31,21 @@
    width: 200px;
    font-size: 16px;
 }
+
+.profileImageWrapper {
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.profileImageWrapper img{
+    width: 400px;
+    height: 300px;
+}
+
+.save-btn {
+    max-width: 150px;
+    width: 100%;
+    font-size: 20px;
+    background-color: #d9f0f3;
+    height: 40px;
+}

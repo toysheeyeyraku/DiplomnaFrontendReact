@@ -14,6 +14,7 @@ export default class StudentProfileComponent extends React.Component<any> {
         phone: '',
         email: '',
         profileImage: '',
+        profileImageFile: '',
     }
 
 
@@ -26,17 +27,16 @@ export default class StudentProfileComponent extends React.Component<any> {
             phone: '',
             email: '',
             profileImage: '',
+            profileImageFile: '',
         }
 
-        studentApiService.getStudentProfile().then((result) => {
-            this.setState({ profileImage: `data:image/png;base64,${result.data}` });
-        });
         this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
         this.handleChangeSecondName = this.handleChangeSecondName.bind(this);
         this.handleChangeThirdName = this.handleChangeThirdName.bind(this);
         this.handleChangePhone = this.handleChangePhone.bind(this);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangeProfileImage = this.handleChangeProfileImage.bind(this);
+        this.updateStudentProfile();
     }
 
 
@@ -60,20 +60,47 @@ export default class StudentProfileComponent extends React.Component<any> {
         this.setState({ email: event.target.value });
     }
 
-    async handleChangeProfileImage(event: any) {
-        await this.setState({ profileImage: event.target.files[0] })
-        const formData = new FormData();
-        console.log('yes')
-        formData.append('image', this.state.profileImage, 'file');
-        await apiRequestService.makeRequest(AxiousRequestMethod.post, 'https://localhost:5002/student/profile/update', formData);
+    updateStudentProfile() {
+        studentApiService.getStudentProfile().then((result) => {
+            this.setState({ profileImage: `data:image/png;base64,${result.data.profileImage}` });
+            this.setState({ firstName: result.data.firstName || '' });
+            this.setState({ secondName: result.data.secondName || '' });
+            this.setState({ thirdName: result.data.thirdName || '' });
+            this.setState({ phone: result.data.phone || '' });
+            this.setState({ email: result.data.email || '' });
+        });
     }
 
-    async getProfile() {
+    async handleChangeProfileImage(event: any) {
+        await this.setState({ profileImageFile: event.target.files[0] })
 
+    }
+
+    async saveProfileImage() {
+        if (this.state.profileImageFile) {
+            const formData = new FormData();
+            formData.append('image', this.state.profileImageFile, 'file');
+            await apiRequestService.makeRequest(AxiousRequestMethod.post, 'https://localhost:5002/student/profileImage/update', formData);
+        }
+
+    }
+
+    async saveProfileData() {
+        const profileUpdateRequest = {
+            FirstName: this.state.firstName,
+            SecondName: this.state.secondName,
+            ThirdName: this.state.thirdName,
+            Phone: this.state.phone,
+            Email: this.state.email,
+        }
+
+        await apiRequestService.makeRequest(AxiousRequestMethod.post, 'https://localhost:5002/student/profile/update', profileUpdateRequest);
     }
 
     async saveProfile() {
-
+        await this.saveProfileImage();
+        await this.saveProfileData();
+        await this.updateStudentProfile();
     }
 
     public render() {
@@ -108,14 +135,17 @@ export default class StudentProfileComponent extends React.Component<any> {
                         </div>
                     </div>
                     <div className='rightBlock'>
+                        <div className='profileImageWrapper'>
+                            <img src={this.state.profileImage} />
+                        </div>
                         <input type='file' onChange={this.handleChangeProfileImage} />
                     </div>
                 </div>
                 <div className='saveSection'>
-                    <button onClick={() => this.saveProfile()}>Зберегти</button>
+                    <button className='save-btn' onClick={() => this.saveProfile()}>Зберегти</button>
                 </div>
 
-                <img src={this.state.profileImage} />
+
             </div>
         )
     }

@@ -32,6 +32,16 @@ class ApiRequestService {
         });
         return result;
     }
+
+    public async makeRequestAnonim(requestMethod: AxiousRequestMethod, requestUrl: string, data?: any) {
+        data = data ? data : {};
+        const result = await axios({
+            method: requestMethod,
+            url: requestUrl,
+            data,
+        });
+        return result;
+    }
 }
 
 const apiRequestService = new ApiRequestService();

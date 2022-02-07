@@ -1,15 +1,16 @@
 
 import './header-student.css'
+import { useNavigate } from 'react-router-dom';
 
 function HeaderStudent() {
+  const navigate = useNavigate();
   return (
     <div className='headerwrapper'>
       <div className='studentBody'>
-        <button className='controll-button'>Головна</button>
-        <button className='controll-button'>Проплата</button>
-        <button className='controll-button'>Порушення та відробіток</button>
-        <button className='controll-button'>Комендант</button>
-        <button className='controll-button'>Профіль</button>
+        <button className='controll-button' onClick={() => navigate("/")}>Головна</button>
+        <button className='controll-button' onClick={() => navigate("/student/payment")}>Проплата</button>
+        <button className='controll-button' onClick={() => navigate("/student/comendant")}>Комендант</button>
+        <button className='controll-button' onClick={() => navigate("student/profile")}>Профіль</button>
       </div>
     </div>
   );

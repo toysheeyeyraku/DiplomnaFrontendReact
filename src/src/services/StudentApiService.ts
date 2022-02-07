@@ -1,5 +1,7 @@
 import axios from 'axios';
 import authService from './AuthService';
+import apiRequestService from './ApiRequestService';
+import { AxiousRequestMethod } from '../types/axiosRequestMethod.type';
 
 class StudentApiService {
     constructor() {
@@ -19,9 +21,7 @@ class StudentApiService {
     }
 
     public async getStudentProfile() {
-
-        const headers = await this.getHeaders();
-        const result = await axios.get('https://localhost:5002/student/profileImage', { headers });
+        const result = await apiRequestService.makeRequest(AxiousRequestMethod.get, 'https://localhost:5002/student/profile');
         return result;
     }
 }
