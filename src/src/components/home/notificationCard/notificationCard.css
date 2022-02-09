@@ -1,0 +1,26 @@
+.notificationBody{
+    border: 2px solid #1eabbc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.notification-heder{
+
+}
+
+.notification-body{
+
+}
+
+.notification-date{
+
+}
+
+.notification-author{
+
+}
+
+.notification-dateAndAuthor{
+    display: flex;
+    justify-content: space-between;
+}

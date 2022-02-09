@@ -24,6 +24,11 @@ class StudentApiService {
         const result = await apiRequestService.makeRequest(AxiousRequestMethod.get, 'https://localhost:5002/student/profile');
         return result;
     }
+
+    public async getStudentAdminProfile(userId: string) {
+        const result = await apiRequestService.makeRequest(AxiousRequestMethod.get, `https://localhost:5002/admin/student/profile?userId=${userId}`);
+        return result;
+    }
 }
 
 const studentApiService = new StudentApiService();

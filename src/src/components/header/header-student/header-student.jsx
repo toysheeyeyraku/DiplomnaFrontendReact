@@ -8,9 +8,9 @@ function HeaderStudent() {
     <div className='headerwrapper'>
       <div className='studentBody'>
         <button className='controll-button' onClick={() => navigate("/")}>Головна</button>
-        <button className='controll-button' onClick={() => navigate("/student/payment")}>Проплата</button>
+        <button className='controll-button' onClick={() => navigate("/payment")}>Проплата</button>
         <button className='controll-button' onClick={() => navigate("/student/comendant")}>Комендант</button>
-        <button className='controll-button' onClick={() => navigate("student/profile")}>Профіль</button>
+        <button className='controll-button' onClick={() => navigate("/student/profile")}>Профіль</button>
       </div>
     </div>
   );

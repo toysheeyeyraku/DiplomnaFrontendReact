@@ -18,6 +18,16 @@ export default class HomeComponent extends React.Component<any> {
 
     constructor(props: any) {
         super(props);
+        this.state = {
+            header: '',
+            body: '',
+            author: '',
+            role: 'anonim',
+            notifications: [],
+        }
+        this.letOnChangeHeader = this.letOnChangeHeader.bind(this);
+        this.letOnChangeBody = this.letOnChangeBody.bind(this);
+        this.letOnChangeAuthor = this.letOnChangeAuthor.bind(this);
         this.initializeUserRole();
         this.updateNotifications();
     }
@@ -26,8 +36,6 @@ export default class HomeComponent extends React.Component<any> {
         const initialLoginState = await authService.getUserRole();
         this.setState({ role: initialLoginState });
     }
-
-
 
     letOnChangeHeader(event: any) {
         this.state.header = event.target.value;
@@ -48,8 +56,8 @@ export default class HomeComponent extends React.Component<any> {
             Body: this.state.body,
             Date: new Date().toString()
         }
-
         await apiRequestService.makeRequest(AxiousRequestMethod.post, 'https://localhost:5002/home', data);
+        await this.updateNotifications();
     }
 
     renderAddNotification() {
@@ -82,8 +90,7 @@ export default class HomeComponent extends React.Component<any> {
     }
 
     async updateNotifications() {
-        const result = await apiRequestService.makeRequest(AxiousRequestMethod.get, 'https://localhost:5002/home');
-        console.log(result.data);
+        const result = await apiRequestService.makeRequestAnonim(AxiousRequestMethod.get, 'https://localhost:5002/home');
         this.setState({ notifications: result.data })
     }
 
@@ -91,7 +98,6 @@ export default class HomeComponent extends React.Component<any> {
         return (
             <div>
                 {this.state.notifications.map((notification, i) => {
-                    console.log("Entered");
                     // Return the element. Also pass key     
                     return (<NotificationComponent key={i} props={notification} />)
                 })}

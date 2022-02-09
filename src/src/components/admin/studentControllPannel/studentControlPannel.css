@@ -1,0 +1,18 @@
+.studentCardBody{
+    display: flex;
+    justify-content: start;
+    margin-bottom: 30px;
+    border: 2px solid #1eabbc;
+    padding: 20px;
+}
+
+.userName{
+    font-size: 20px;
+    margin: auto 0px;
+}
+
+.studentCardBody *{
+    margin-right: 30px;
+}
+
+
