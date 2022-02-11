@@ -1,12 +1,8 @@
 import * as React from 'react';
-import './studentProfile.css'
-import axios from 'axios';
-import authService from '../../services/AuthService';
-import studentApiService from '../../services/StudentApiService';
-import apiRequestService from '../../services/ApiRequestService';
-import { AxiousRequestMethod } from '../../types/axiosRequestMethod.type';
+import './adminStudentProfile.css'
+import studentProfileService from '../../../services/admin/studentProfile.service';
 
-export default class StudentProfileComponent extends React.Component<any> {
+export default class AdminStudentProfileComponent extends React.Component<any> {
     state = {
         firstName: '',
         secondName: '',
@@ -15,10 +11,12 @@ export default class StudentProfileComponent extends React.Component<any> {
         email: '',
         profileImage: '',
         profileImageFile: '',
+        userId: '',
     }
 
 
     constructor(props: any) {
+
         super(props)
         this.state = {
             firstName: '',
@@ -28,6 +26,13 @@ export default class StudentProfileComponent extends React.Component<any> {
             email: '',
             profileImage: '',
             profileImageFile: '',
+            userId: '',
+        }
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const userId = params.get('userId');
+        if (userId != null) {
+            this.state.userId = userId;
         }
 
         this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
@@ -61,7 +66,7 @@ export default class StudentProfileComponent extends React.Component<any> {
     }
 
     updateStudentProfile() {
-        studentApiService.getStudentProfile().then((result) => {
+        studentProfileService.getStudentProfile(this.state.userId).then((result) => {
             this.setState({ profileImage: `data:image/png;base64,${result.data.profileImage}` });
             this.setState({ firstName: result.data.firstName || '' });
             this.setState({ secondName: result.data.secondName || '' });
@@ -77,11 +82,7 @@ export default class StudentProfileComponent extends React.Component<any> {
     }
 
     async saveProfileImage() {
-        if (this.state.profileImageFile) {
-            const formData = new FormData();
-            formData.append('image', this.state.profileImageFile, 'file');
-            await apiRequestService.makeRequest(AxiousRequestMethod.post, 'https://localhost:5002/student/profileImage/update', formData);
-        }
+        await studentProfileService.saveStudentProfileImage(this.state.profileImageFile, this.state.userId);
 
     }
 
@@ -94,7 +95,7 @@ export default class StudentProfileComponent extends React.Component<any> {
             Email: this.state.email,
         }
 
-        await apiRequestService.makeRequest(AxiousRequestMethod.post, 'https://localhost:5002/student/profile/update', profileUpdateRequest);
+        await studentProfileService.saveStudentProfileData(profileUpdateRequest, this.state.userId);
     }
 
     async saveProfile() {

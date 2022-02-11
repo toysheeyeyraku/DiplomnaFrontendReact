@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './registration.css'
 import axios from 'axios';
-import authService from '../../services/AuthService';
+import authService from '../../../services/AuthService';
 
 export default class RegistrationComponent extends React.Component<any> {
 

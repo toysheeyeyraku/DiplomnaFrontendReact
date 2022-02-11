@@ -1,0 +1,31 @@
+.paymentCard {
+    width: 250px;
+    height: 250px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.expandedImage {
+    width: 100vw;
+    position: fixed;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.image{
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 80vw;
+}
+
+.closeButton {
+    font-size: 30px;
+    color: white;
+    margin-top: 20px;
+    margin-left: 20px;
+}

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { ToastContainer, toast } from 'react-toastify';
-import { ApiService } from '../services/ApiService';
-import authService from '../services/AuthService';
+import { ApiService } from '../../services/ApiService';
+import authService from '../../services/AuthService';
 
 import AuthContent from './AuthContent';
 import Buttons from './Buttons';
