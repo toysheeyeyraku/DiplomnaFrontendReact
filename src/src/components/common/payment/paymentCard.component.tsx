@@ -24,8 +24,6 @@ export default class PaymendCardComponent extends React.Component<any> {
         this.setState({ viewerIsOpen: true })
     }
 
-
-
     closeViewer() {
         this.setState({ viewerIsOpen: false });
     }
@@ -69,6 +67,7 @@ export default class PaymendCardComponent extends React.Component<any> {
                 <button onClick={() => this.openViewer()}>
                     <img className='paymentCard' src={this.state.paymentCheck} />
                 </button>
+                <p>Date: {this.props.props.date}</p>
             </div>
 
         )

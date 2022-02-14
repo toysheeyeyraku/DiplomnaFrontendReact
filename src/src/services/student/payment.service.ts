@@ -12,6 +12,7 @@ class PaymentService {
         const result = await apiRequestService.makeRequest(AxiousRequestMethod.get, 'https://localhost:5002/student/payment');
         return result;
     }
+
 }
 
 const paymentService = new PaymentService();

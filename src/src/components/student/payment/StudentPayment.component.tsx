@@ -2,20 +2,25 @@ import * as React from 'react';
 import './payment.css'
 import paymentService from '../../../services/student/payment.service';
 import PaymendCardComponent from '../../common/payment/paymentCard.component';
-
+import debtService from '../../../services/student/debt.service';
 
 export default class StudentPaymentComponent extends React.Component<any> {
 
     state = {
         paymentCheck: '',
         paymentChecksData: [],
+        debtWord: '',
+        debtMoney: '',
     }
     constructor(props: any) {
         super(props)
         this.state = {
             paymentCheck: '',
             paymentChecksData: [],
+            debtWord: '',
+            debtMoney: '',
         }
+        this.updateDebt();
         this.handleChangePaymentCheck = this.handleChangePaymentCheck.bind(this);
         this.updatePayments();
     }
@@ -37,6 +42,17 @@ export default class StudentPaymentComponent extends React.Component<any> {
         this.setState({ paymentChecksData: payments });
     }
 
+    async updateDebt() {
+        const debt = (await debtService.getDebt()).data;
+        if (debt.moneyDept >= 0) {
+            await this.setState({ debtWord: 'Борг' });
+
+        } else {
+            await this.setState({ debtWord: 'Переплата' });
+        }
+        await this.setState({ debtMoney: Math.abs(debt.moneyDept) });
+    }
+
     public render() {
         return (
             <div>
@@ -47,8 +63,8 @@ export default class StudentPaymentComponent extends React.Component<any> {
                         <button className='save-btn' onClick={() => this.savePymentCheck()}>Зберегти</button>
                     </div>
                     <div className='paymentDeptWrapper'>
-                        <p>Борг/Переплата</p>
-                        <p>1000</p>
+                        <p>{this.state.debtWord}</p>
+                        <p>{this.state.debtMoney}</p>
                     </div>
                 </div>
                 <div className='payments'>
