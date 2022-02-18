@@ -8,6 +8,9 @@ import Logo from './uchihaLogo.png'
 import './header.css'
 import '../../common/commonStyle.css'
 import authService from '../../services/AuthService';
+import HeaderDeanAdmin from './header-dean/header-dean'
+import HeaderComendantAdmin from './header-comendant/header-comendant'
+import HeaderPasswordHolder from './header-passwordHolder/header-passwordHolder';
 
 function Header() {
     // Anonim, Student, Admin
@@ -32,13 +35,13 @@ function Header() {
             );
         }
 
-        if (logginState === 'student' || logginState === 'admin') {
-            return (
-                <div>
-                    <button onClick={() => authService.logout()}>Вихід</button>
-                </div>
-            );
-        }
+
+        return (
+            <div>
+                <button onClick={() => authService.logout()}>Вихід</button>
+            </div>
+        );
+
     }
 
     let renderBody = () => {
@@ -53,6 +56,26 @@ function Header() {
                 <HeaderAdmin />
             );
         }
+
+        if (logginState === 'dean') {
+            return (
+                <HeaderDeanAdmin />
+            );
+        }
+
+        if (logginState === 'comendant') {
+            return (
+                <HeaderComendantAdmin />
+            );
+        }
+
+        if (logginState === 'passportHolder') {
+            return (
+                <HeaderPasswordHolder />
+            );
+        }
+
+
         return (
             <HeaderAnonim />
         );

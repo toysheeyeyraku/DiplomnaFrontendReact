@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from '../components/header/header'
 import './App.css';
 import RegistrationComponent from '../components/admin/registration/Registration.component'
-import StudentProfileComponent from '../components/student/profile/studentProfile.component';
+import SelfProfileComponent from '../components/self/profile/selfProfile.component';
 import Home from '../components/common/home/Home.component'
 import StudentPaymentComponent from '../components/student/payment/StudentPayment.component';
 import StudentControllPanellComponent from '../components/admin/studentControlPannel/StudentControllPanell.component'
@@ -26,7 +26,7 @@ class App extends React.Component {
             <Route path='/admin/payment' element={<AdminPaymentComponent />} />
             <Route path='/admin/room' element={<AdminRoomComponent />} />
             <Route path="admin/registration" element={<RegistrationComponent />} />
-            <Route path="/student/profile" element={<StudentProfileComponent />} />
+            <Route path="/self/profile" element={<SelfProfileComponent />} />
             <Route path='/student/payment' element={<StudentPaymentComponent />} />
             <Route path='/' element={<Home />} />
           </Routes>
