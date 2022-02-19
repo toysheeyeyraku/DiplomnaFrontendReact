@@ -11,6 +11,7 @@ function HeaderAdmin() {
         <button className='controll-button' onClick={() => navigate("/admin/studentController")}>Студенти</button>
         <button className='controll-button' onClick={() => navigate("/admin/registration")}>Реєстрація</button>
         <button className='controll-button' onClick={() => navigate("/admin/roomsController")}>Кімнати</button>
+        <button className='controll-button' onClick={() => navigate("/self/profile")}>Профіль</button>
       </div>
     </div>
   );

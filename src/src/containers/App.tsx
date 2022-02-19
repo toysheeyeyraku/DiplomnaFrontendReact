@@ -11,6 +11,7 @@ import AdminStudentProfileComponent from '../components/admin/studentProfile/Adm
 import AdminPaymentComponent from '../components/admin/payment/AdminPayment.component';
 import AdminRoomComponent from '../components/admin/room/AdminRoom.component';
 import RoomsControlPanelComponent from '../components/admin/roomsController/RoomsController.component';
+import ApplicationSettlementComponent from '../components/common/applicationSettlement/ApplicationSettlement.component';
 
 class App extends React.Component {
   public render() {
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route path="admin/registration" element={<RegistrationComponent />} />
             <Route path="/self/profile" element={<SelfProfileComponent />} />
             <Route path='/student/payment' element={<StudentPaymentComponent />} />
+            <Route path='/common/applicationSettlement' element={<ApplicationSettlementComponent />} />
             <Route path='/' element={<Home />} />
           </Routes>
         </div>

@@ -1,0 +1,81 @@
+.blackLine{
+    width: 100%;
+    height: 5px;
+    background-color: black;
+    margin-top: 50px;
+}
+
+.prifileWrapper{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftBlock{
+
+}
+
+.controll-input {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    margin-bottom: 30px;
+}
+
+.controll-input p {
+    margin: auto 0;
+    
+}
+
+.controll-input input {
+   width: 200px;
+   font-size: 16px;
+}
+
+.profileImageWrapper {
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.profileImageWrapper img{
+    width: 400px;
+    height: 300px;
+}
+
+.save-btn {
+    max-width: 150px;
+    width: 100%;
+    font-size: 20px;
+    background-color: #d9f0f3;
+    height: 40px;
+}
+
+.application-setlement-student-add {
+    display: flex;
+    justify-content: start;
+}
+
+.application-setlement-card {
+    display: flex;
+    justify-content: start;
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid #86e3f0;
+}
+
+.application-setlement-card * {
+    margin-right: 20px;
+    margin-bottom: 0px;
+}
+.check-box {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.generete-word {
+    max-width: 200px;
+    width: 100%;
+    font-size: 20px;
+    background-color: #d9f0f3;
+    height: 40px;
+}

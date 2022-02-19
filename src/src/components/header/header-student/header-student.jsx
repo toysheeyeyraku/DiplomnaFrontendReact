@@ -11,6 +11,7 @@ function HeaderStudent() {
         <button className='controll-button' onClick={() => navigate("/student/payment")}>Проплата</button>
         <button className='controll-button' onClick={() => navigate("/student/comendant")}>Комендант</button>
         <button className='controll-button' onClick={() => navigate("/self/profile")}>Профіль</button>
+        <button className='controll-button' onClick={() => navigate("/common/applicationSettlement")}>Заява на проживання</button>
       </div>
     </div>
   );

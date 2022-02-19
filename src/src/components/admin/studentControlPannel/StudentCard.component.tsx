@@ -13,6 +13,7 @@ export default function StudentCard(props: any) {
             <p className='userName'>{props.userName}</p>
             <button className='controll-button' onClick={() => navigate(`/admin/student/profile?userId=${props.userId}`)}>Профіль</button>
             <button className='controll-button' onClick={() => navigate(`/admin/payment?userId=${props.userId}`)}>Проплата</button>
+            <button className='controll-button' onClick={() => navigate(`/common/applicationSettlement?userId=${props.userId}`)}>Завява на поселення</button>
         </div>
     )
 

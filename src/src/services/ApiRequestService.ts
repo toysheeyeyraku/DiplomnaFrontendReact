@@ -42,6 +42,19 @@ class ApiRequestService {
         });
         return result;
     }
+
+    public async downloadFile(requestUrl: string) {
+        const FileDownload = require('js-file-download');
+        const headers = await this.getRequestHeaders();
+        axios({
+            url: requestUrl,
+            method: 'GET',
+            responseType: 'blob', // Important,
+            headers
+        }).then((response) => {
+            FileDownload(response.data, 'report.docx');
+        });
+    }
 }
 
 const apiRequestService = new ApiRequestService();
